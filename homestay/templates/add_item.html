@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <h1 class="mt-4 mb-4">Add Adhoc Item</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group mb-4">
+                <label for="adhoc_item">Adhoc Item:</label>
+                <input class="form-control" type="text" id="adhoc_item" name="adhoc_item">
+            </div>
+            <div class="form-group mb-4">
+                <label for="remark">Remark:</label>
+                <input class="form-control" type="text" id="remark" name="remark">
+            </div>
+            <div class="form-group mb-4">
+                <label for="category">Category:</label>
+                <select class="form-control" id="category" name="category">
+                    {% for value, display_name in form.category.field.choices %}
+                        <option value="{{ value }}">{{ display_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group mb-4">
+                <label for="tags">Tags:</label>
+                <select class="form-control" id="tags" name="tags" multiple>
+                    {% for tag in form.tags.field.queryset %}
+                        <option value="{{ tag.id }}">{{ tag.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="date_created">Date Created:</label>
+                <input class="form-control" type="datetime-local" id="date_created" name="date_created">
+            </div>
+
+
+            <button class="btn btn-secondary mb-4" type="submit">Submit</button>
+            {% if messages %}
+            <div class="alert alert-success">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

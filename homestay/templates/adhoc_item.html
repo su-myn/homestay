@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .sort-indicator::after {
+        content: ' ▼';
+        font-size: 0.8em;
+        color: #007bff;
+    }
+</style>
+
+<div class="container">
+    <h1 class="pt-5">Adhoc Item</h1>
+    <a href="{% url 'add_item' %}" class="btn btn-success" role="button">+ Add Adhoc Item</a>
+</div>
+
+<div class="container">
+    <div class="card card-body">
+        <a class="btn btn-primary btn-sm btn-block" href="{% url 'add_item' %}">+ Add Adhoc Item</a>
+        <table class="table table-sm">
+            <tr>
+                <th><a href="?sort=adhoc_item" class="{% if current_sort == 'adhoc_item' %}sort-indicator{% endif %}">Adhoc Item</a></th>
+                <th><a href="?sort=remark" class="{% if current_sort == 'remark' %}sort-indicator{% endif %}">Remark</a></th>
+                <th><a href="?sort=tag" class="{% if current_sort == 'tag' %}sort-indicator{% endif %}">Tag</a></th>
+                <th><a href="?sort=category" class="{% if current_sort == 'category' %}sort-indicator{% endif %}">Category</a></th>
+                <th><a href="?sort=date_created" class="{% if current_sort == 'date_created' %}sort-indicator{% endif %}">Date Created</a></th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+
+            {% for n in adhoc_forms %}
+                <tr>
+                    <td>{{n.adhoc_item}}</td>
+                    <td>{{n.remark}}</td>
+                    <td>
+                        {% for tag in n.tags.all %}
+                            <span class="badge bg-secondary">{{ tag.name }}</span>
+                        {% empty %}
+                            <span class="text-muted">No tags</span>
+                        {% endfor %}
+                    </td>
+                    <td>{{n.category}}</td>
+                    <td>{{n.date_created}}</td>
+                    <td><a href="">Update</a> </td>
+                    <td><a href="">Delete</a> </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,4 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Homepage</h1>
+    <div class="container">
+        <h1 class="pt-5">Welcome to my Homestay App</h1>
+    <br>
+    <br>
+        <a href="{% url 'add_repair' %}" class="btn btn-primary" role="button">+ Repair Item</a>
+        <a href="{% url 'add_repair' %}" class="btn btn-success" role="button">+ Replace Item</a>
+        <a href="{% url 'add_repair' %}" class="btn btn-danger" role="button">+ Complain Item</a>
+        <a href="{% url 'add_repair' %}" class="btn btn-warning" role="button">+ Aircond Log</a>
+        <a href="{% url 'add_repair' %}" class="btn btn-info" role="button">+ Refill Log</a>
+    </div>
 {% endblock %}

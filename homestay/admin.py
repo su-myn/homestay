@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import RepairForm
+from .models import RepairForm, AdhocItemForm, Tag
 
 
 class RepairFormAdmin(admin.ModelAdmin):
@@ -9,4 +9,8 @@ class RepairFormAdmin(admin.ModelAdmin):
     ordering = ("unit_number",)
 
 
+
 admin.site.register(RepairForm, RepairFormAdmin)
+admin.site.register(AdhocItemForm)
+admin.site.register(Tag)
+

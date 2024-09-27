@@ -1,4 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Repair</h1>
+<div class="container">
+    <h1 class="pt-5">Repair</h1>
+    <br>
+    <a href="{% url 'add_repair' %}" class="btn btn-success" role="button">+ Add Repair Item</a>
+    <br>
+    <br>
+</div>
+
+<div class="container">
+    <div class="card card-body">
+        <a class="btn btn-primary btn-sm btn-block" href="{% url 'add_repair' %}">+ Add Repair Item</a>
+        <table class="table table-sm">
+            <tr>
+                <th><a href="?sort_by=unit_number&order={% if current_sort == 'unit_number' and current_order == 'asc' %}desc{% else %}asc{% endif %}">Unit</a></th>
+                <th><a href="?sort_by=contractor&order={% if current_sort == 'contractor' and current_order == 'asc' %}desc{% else %}asc{% endif %}">Contractor</a></th>
+                <th><a href="?sort_by=repair_issue&order={% if current_sort == 'repair_issue' and current_order == 'asc' %}desc{% else %}asc{% endif %}">Issue</a></th>
+                <th><a href="?sort_by=email&order={% if current_sort == 'email' and current_order == 'asc' %}desc{% else %}asc{% endif %}">Email</a></th>
+                <th><a href="?sort_by=date&order={% if current_sort == 'date' and current_order == 'asc' %}desc{% else %}asc{% endif %}">Date</a></th>
+                <th><a href="?sort_by=price&order={% if current_sort == 'price' and current_order == 'asc' %}desc{% else %}asc{% endif %}">Price</a></th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+
+            {% for n in repair_forms %}
+                <tr>
+                    <td>{{n.unit_number}}</td>
+                    <td>{{n.contractor}}</td>
+                    <td>{{n.repair_issue}}</td>
+                    <td>{{n.email}}</td>
+                    <td>{{n.date}}</td>
+                    <td>{{n.price}}</td>
+                    <td><a href="">Update</a></td>
+                    <td><a href="">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<br>
+
+</div>
+
 {% endblock %}
